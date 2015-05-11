@@ -56,14 +56,14 @@ print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pres
 
 GPIO.output(VOLTMETER, GPIO.LOW)
 
-FILENAME = './data/ptdata_' + datetime.datetime.now().strftime("%Y%m%d")
+FILENAME = '../data/ptdata_' + datetime.datetime.now().strftime("%Y%m%d")
 inc=0
-while path.isfile(FILENAME + '.csv'):
-    FILENAME = FILENAME + '_' + str(inc)
+checkfile = FILENAME
+while path.isfile(checkfile + '.csv'):
+    checkfile = FILENAME + '_' + str(inc)
     inc = inc + 1
 
-
-FILENAME = FILENAME + '.csv'
+FILENAME = checkfile + '.csv'
 
 #open log file
 f=open(FILENAME,'a')
