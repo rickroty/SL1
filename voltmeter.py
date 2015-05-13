@@ -21,11 +21,11 @@ run = True
 while (run):
     if ( GPIO.input(SWITCH) == True ):
         if meteron:
-             meteron = false
+             meteron = False
              GPIO.output(VOLTMETER, GPIO.LOW)
              print 'VOLT METER OFF'
         else:
-             meteron = true
+             meteron = True
              GPIO.output(VOLTMETER, GPIO.HIGH)
              print 'VOLT METER ON'
     sleep(0.2)
