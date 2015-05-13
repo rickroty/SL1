@@ -5,6 +5,7 @@ import time
 from time import sleep
 import datetime
 
+SWITCH = 11
 VOLTMETER = 15
 
 GPIO.setmode(GPIO.BOARD)
