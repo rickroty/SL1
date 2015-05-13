@@ -38,7 +38,7 @@ while (start==0):
             GPIO.output(POWERLED, GPIO.HIGH)
         else:
             GPIO.output(POWERLED, GPIO.LOW)
-        toggle = !toggle
+        toggle =  not toggle
 
     sleep(0.2)
 
