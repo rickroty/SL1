@@ -8,9 +8,11 @@ import time
 from time import sleep
 import datetime
 
+
 SWITCH = 11
-VOLTMETER = 15
+#VOLTMETER = 15
 LED = 12
+POWERLED = 22
 
 GPIO.cleanup()
 
@@ -21,8 +23,8 @@ GPIO.setup(SWITCH, GPIO.IN)
 GPIO.setup(LED, GPIO.OUT)
 GPIO.output(LED, GPIO.LOW)
 
-GPIO.setup(VOLTMETER, GPIO.OUT)
-GPIO.output(VOLTMETER, GPIO.HIGH)
+GPIO.setup(POWERLED, GPIO.OUT)
+GPIO.output(POWERLED, GPIO.HIGH)
 
 start = 0
 while (start==0):
@@ -54,7 +56,7 @@ print 'Initial Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
 print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude())
 print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
 
-GPIO.output(VOLTMETER, GPIO.LOW)
+
 
 FILENAME = '../data/ptdata_' + datetime.datetime.now().strftime("%Y%m%d")
 inc=0
@@ -96,4 +98,6 @@ while True:
     GPIO.output(LED, GPIO.LOW)
     time.sleep(9)
 
+GPIO.output(LED, GPIO.LOW)
+GPIO.output(VOLTMETER, GPIO.LOW)
 GPIO.cleanup()
