@@ -28,15 +28,18 @@ GPIO.output(POWERLED, GPIO.HIGH)
 
 start = 0
 cnt = 0
+toggle = True
 while (start==0):
     if ( GPIO.input(SWITCH) == True ):
          start = 1
     cnt = cnt + 1
     if(cnt/10) == int(cnt/10):
-        GPIO.output(POWERLED, GPIO.HIGH)
-    else:
-        GPIO.output(POWERLED, GPIO.LOW)
-        
+        if(toggle):
+            GPIO.output(POWERLED, GPIO.HIGH)
+        else:
+            GPIO.output(POWERLED, GPIO.LOW)
+        toggle = !toggle
+
     sleep(0.2)
 
 GPIO.output(POWERLED, GPIO.HIGH)
