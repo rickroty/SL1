@@ -32,7 +32,7 @@ while (start==0):
     if ( GPIO.input(SWITCH) == True ):
          start = 1
     cnt = cnt + 1
-    if(cnt/10) = int(cnt/10):
+    if(cnt/10) == int(cnt/10):
         GPIO.output(POWERLED, GPIO.HIGH)
     else:
         GPIO.output(POWERLED, GPIO.LOW)
