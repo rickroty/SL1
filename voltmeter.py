@@ -24,10 +24,12 @@ while (run):
              meteron = False
              GPIO.output(VOLTMETER, GPIO.LOW)
              print 'VOLT METER OFF'
+             sleep(0.5)
         else:
              meteron = True
              GPIO.output(VOLTMETER, GPIO.HIGH)
              print 'VOLT METER ON'
+             sleep(0.5)
     sleep(0.2)
 
 
