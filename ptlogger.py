@@ -2,6 +2,8 @@ import Adafruit_BMP.BMP085 as BMP085
 
 import RPi.GPIO as GPIO
 
+import glob
+
 import os
 import os.path as path
 import time
@@ -44,6 +46,36 @@ while (start==0):
 
 GPIO.output(POWERLED, GPIO.HIGH)
 
+
+# Setup 1-wire BUS for temperature probe
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+ 
+base_dir = '/sys/bus/w1/devices/'
+device_folder = glob.glob(base_dir + '28*')[0]
+device_file = device_folder + '/w1_slave'
+ 
+def read_temp_raw():
+    f = open(device_file, 'r')
+    lines = f.readlines()
+    f.close()
+    return lines
+ 
+def read_probe_temperature():
+    lines = read_temp_raw()
+    while lines[0].strip()[-3:] != 'YES':
+        time.sleep(0.2)
+        lines = read_temp_raw()
+    equals_pos = lines[1].find('t=')
+    if equals_pos != -1:
+        temp_string = lines[1][equals_pos+2:]
+        temp_c = float(temp_string) / 1000.0
+        #temp_f = temp_c * 9.0 / 5.0 + 32.0
+        return temp_c
+
+
+
+#Instantiate I2C Pressure Sensor 
 # Default constructor will pick a default I2C bus.
 #
 # For the Raspberry Pi this means you should hook up to the only exposed I2C bus
@@ -79,7 +111,7 @@ FILENAME = checkfile + '.csv'
 
 #open log file
 f=open(FILENAME,'a')
-outstring = 'date,temp,pressure,altitude,sealevelpressure\n'
+outstring = 'date,temp,outsidetemp,pressure,altitude,sealevelpressure\n'
 f.write(outstring)
 f.close()
 
@@ -97,8 +129,9 @@ while True:
     strPressure = '{0:0.2f}'.format(sensor.read_pressure())
     strAltitude = '{0:0.2f}'.format(sensor.read_altitude())
     strSeaLevelPressure = '{0:0.2f}'.format(sensor.read_sealevel_pressure())
+    strOutsideTemp = read_probe_temperature()
 
-    outstring = timestamp + ',' + strTemp + ',' + strPressure + ',' + strAltitude + ',' + strSeaLevelPressure + '\n'
+    outstring = timestamp + ',' + strTemp + ',' + strOutsideTemp ',' + strPressure + ',' + strAltitude + ',' + strSeaLevelPressure + '\n'
 
     print outstring
     f.write(outstring)
