@@ -131,7 +131,7 @@ while True:
     strSeaLevelPressure = '{0:0.2f}'.format(sensor.read_sealevel_pressure())
     strOutsideTemp = read_probe_temperature()
 
-    outstring = timestamp + ',' + strTemp + ',' + strOutsideTemp ',' + strPressure + ',' + strAltitude + ',' + strSeaLevelPressure + '\n'
+    outstring = timestamp + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + strSeaLevelPressure + '\n'
 
     print outstring
     f.write(outstring)
