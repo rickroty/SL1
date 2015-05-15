@@ -94,9 +94,11 @@ sensor = BMP085.BMP085()
 print 'Current Date/Time is' + datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
 print 'Initial Temp = {0:0.2f} *C'.format(sensor.read_temperature())
+print 'Initial External Temperature = {0:0.2f} C'.format(read_probe_temperature())
 print 'Initial Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
 print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude())
 print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
+
 
 
 
@@ -129,7 +131,7 @@ while True:
     strPressure = '{0:0.2f}'.format(sensor.read_pressure())
     strAltitude = '{0:0.2f}'.format(sensor.read_altitude())
     strSeaLevelPressure = '{0:0.2f}'.format(sensor.read_sealevel_pressure())
-    strOutsideTemp = read_probe_temperature()
+    strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
 
     outstring = timestamp + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + strSeaLevelPressure + '\n'
 
