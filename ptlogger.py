@@ -46,7 +46,7 @@ while (start==0):
 
 GPIO.output(POWERLED, GPIO.HIGH)
 
-os.system('sudo echo 1 > /etc/devices/platform/bcm2708_usb/bussupend')
+os.system('sudo echo 1 > /etc/devices/platform/bcm2708_usb/bussuspend')
 
 # Setup 1-wire BUS for temperature probe
 os.system('modprobe w1-gpio')
@@ -169,7 +169,7 @@ while (cnt<100):
     sleep(0.1)
     
 GPIO.output(LED, GPIO.LOW)
-GPIO.output(VOLTMETER, GPIO.LOW)
+#GPIO.output(VOLTMETER, GPIO.LOW)
 GPIO.output(POWERLED, GPIO.LOW)
 GPIO.cleanup()
 print "Shutting down..."
