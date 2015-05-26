@@ -38,13 +38,16 @@ while (start==0):
     if(cnt/10) == int(cnt/10):
         if(toggle):
             GPIO.output(POWERLED, GPIO.HIGH)
+            GPIO.output(LED, GPIO.LOW)
         else:
             GPIO.output(POWERLED, GPIO.LOW)
+            GPIO.output(LED, GPIO.HIGH)
         toggle =  not toggle
 
     sleep(0.2)
 
 GPIO.output(POWERLED, GPIO.HIGH)
+GPIO.output(LED, GPIO.LOW)
 
 os.system('sudo echo 1 > /etc/devices/platform/bcm2708_usb/bussuspend')
 
