@@ -46,6 +46,7 @@ while (start==0):
 
 GPIO.output(POWERLED, GPIO.HIGH)
 
+os.system('sudo echo 1 > /etc/devices/platform/bcm2708_usb/bussupend')
 
 # Setup 1-wire BUS for temperature probe
 os.system('modprobe w1-gpio')
@@ -117,7 +118,8 @@ outstring = 'date,temp,outsidetemp,pressure,altitude,sealevelpressure\n'
 f.write(outstring)
 f.close()
 
-while True:
+quit = False
+while not quit:
     
     GPIO.output(LED, GPIO.HIGH)
     
@@ -141,8 +143,34 @@ while True:
 
     time.sleep(1)
     GPIO.output(LED, GPIO.LOW)
-    time.sleep(9)
+    
+    time.sleep(2)
+    if ( GPIO.input(SWITCH) == True ):
+        quit = True
+        
+    time.sleep(2)
+    if ( GPIO.input(SWITCH) == True and quit == True):
+        quit = True
+    else:
+        quit = False
+        
 
+cnt = 0
+toggle = True
+while (cnt<100):
+    cnt = cnt + 1
+    if(cnt/10) == int(cnt/10):
+        if(toggle):
+            GPIO.output(POWERLED, GPIO.HIGH)
+        else:
+            GPIO.output(POWERLED, GPIO.LOW)
+        toggle =  not toggle
+
+    sleep(0.1)
+    
 GPIO.output(LED, GPIO.LOW)
 GPIO.output(VOLTMETER, GPIO.LOW)
+GPIO.output(POWERLED, GPIO.LOW)
 GPIO.cleanup()
+print "Shutting down..."
+os.system('sudo shutdown -h now')
