@@ -44,7 +44,7 @@ if __name__ == "__main__":
                     if data:
                         sock.send('OK ... ' + data)
                         if data == 'killusb':
-                           os.system('sudo echo 1 > /etc/devices/platform/bcm2708_usb/bussuspend')
+                           os.system('sudo echo 1 > /sys/devices/platform/bcm2708_usb/bussuspend')
                            print "USB Killed."
                  
                 # client disconnected, so remove from socket list
