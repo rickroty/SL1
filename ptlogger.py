@@ -49,7 +49,12 @@ while (start==0):
 GPIO.output(POWERLED, GPIO.HIGH)
 GPIO.output(LED, GPIO.LOW)
 
-os.system('sudo echo 1 > /etc/devices/platform/bcm2708_usb/bussuspend')
+import socket
+
+clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+clientsocket.connect(('localhost', 5000))
+clientsocket.send('killusb')
+clientsocket.close()
 
 # Setup 1-wire BUS for temperature probe
 os.system('modprobe w1-gpio')
