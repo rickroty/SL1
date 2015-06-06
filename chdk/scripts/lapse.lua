@@ -26,7 +26,7 @@ Features:
 --[[
 @title Time-lapse
 @param s Secs/frame
-@default s 3
+@default s 15
 @param h Sequence hours
 @default h 0
 @param m Sequence minutes
@@ -39,10 +39,14 @@ Features:
 @range f 0 1
 @param d Display off frame 0=never
 @default d 3
+@param r Refocus until frame 0=never
+@default r 40
+@range r 0 50
+
 --]]
 
 -- convert parameters into readable variable names
-secs_frame, hours, minutes, endless, focus_at_start, display_off_frame = s, h, m, (e == 1), (f == 1), d
+secs_frame, hours, minutes, endless, focus_at_start, display_off_frame = s, h, m, (e == 1), (f == 1), d, refocus_until 
 
 -- sanitize parameters
 if secs_frame <= 0 then
@@ -238,9 +242,13 @@ frame = 1
 -- target_display_mode = 2 -- off
 -- ^^^^^^^  REMOVED  ^^^^^^^
 
-print "Press SET to exit"
+print "Starting in 60 seconds"
+sleep(60000)
+
+print "Starting - Press SET to exit"
 
 start_ticks = get_tick_count()
+
 
 while endless or frame <= total_frames do
    local free = get_jpg_count() - 1 -- to account for the one we're going to make
@@ -263,15 +271,9 @@ while endless or frame <= total_frames do
       break
    end
    frame = frame + 1
+   if frame % 10 == 0 and refocus_until >= frame then
+   	local got_focus = pre_focus()
+   end
 end
-
--- restore display mode
--- vvvvvvv  REMOVED  vvvvvvv
---if display_off_frame > 0 then
---   while seek_display_mode(original_display_mode) do
---      sleep(1000)
---   end
---end
--- ^^^^^^^  REMOVED  ^^^^^^^
 
 restore()
