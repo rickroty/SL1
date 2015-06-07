@@ -205,6 +205,9 @@ set_lcd_display(1)
 end
 -- ^^^^^^^  CHANGED  ^^^^^^^
 
+print "Starting in 60 seconds"
+sleep(60000)
+
 if focus_at_start then
 	local got_focus = pre_focus()
    if got_focus < 0 then
@@ -242,8 +245,19 @@ frame = 1
 -- target_display_mode = 2 -- off
 -- ^^^^^^^  REMOVED  ^^^^^^^
 
-print "Starting in 60 seconds"
-sleep(60000)
+
+
+-- flash off
+set_prop(143,2)
+
+-- set 100 ISO
+set_prop(149,200)
+ 
+-- set picture size to L (max)
+set_prop(220,0)
+ 
+-- set quality to Superfine
+set_prop(57,0)
 
 print "Starting - Press SET to exit"
 
