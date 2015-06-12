@@ -26,7 +26,7 @@ Features:
 --[[
 @title Time-lapse
 @param s Secs/frame
-@default s 15
+@default s 30
 @param h Sequence hours
 @default h 0
 @param m Sequence minutes
