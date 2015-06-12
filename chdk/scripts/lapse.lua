@@ -251,7 +251,7 @@ frame = 1
 set_prop(143,2)
 
 -- set 100 ISO
-set_prop(149,200)
+--set_prop(149,200)
  
 -- set picture size to L (max)
 set_prop(220,0)
