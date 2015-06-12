@@ -285,7 +285,7 @@ while endless or frame <= total_frames do
       break
    end
    frame = frame + 1
-   if frame % 10 == 0 --and refocus_until >= frame then
+   if frame % 10 == 0 then --and refocus_until >= frame then
    	local got_focus = pre_focus()
    end
 end
