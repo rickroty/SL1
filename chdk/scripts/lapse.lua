@@ -309,6 +309,7 @@ while endless or frame <= total_frames do
 -- ^^^^^^^  CHANGED  ^^^^^^^
    end
    shoot()
+   writelog("Shot a frame")
    if frame_delay(frame, start_ticks, ticks_per_frame, total_frames) then
       print "User quit"
       break
