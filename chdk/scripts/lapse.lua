@@ -72,6 +72,35 @@ function calculate_parameters (seconds_per_frame, hours, minutes)
    return ticks_per_frame, total_frames
 end
 
+function timestamp()
+ Y=get_time("Y")
+ M=get_time("M")
+ D=get_time("D")
+ h=get_time("h")
+ m=get_time("m")
+ s=get_time("s")
+ return ( Y .. "-" .. M .. "-" .. D .. " " .. h .. ":" .. m .. ":" .. s)
+end
+
+function writelog(msg)
+ ts=timestamp()
+ D=get_time("D")
+ 
+ t0=get_temperature(0)
+ t1=get_temperature(1)
+ t2=get_temperature(2)
+ orient=get_prop(219)
+ volt=get_vbatt() 
+ 
+ print_screen(-1 * D) --negative means append (in case of a restart, we dont want to overwrite)
+ 
+ -- time, temp1, temp2, temp3, orientation, battery voltage, message
+ print('' .. ts .. ',' .. t0 .. ',' .. t1 .. ',' .. t2 .. ',' .. orient .. ',' .. volt .. ',' .. msg)
+end
+
+
+
+
 function print_status (frame, total_frames, ticks_per_frame, endless, free)
    if endless then
       local h, m, s = ticks_to_hms(frame * ticks_per_frame)
