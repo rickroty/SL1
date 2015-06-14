@@ -104,11 +104,11 @@ sealevel_pressure = sensor.read_sealevel_pressure(local_altitude)
 print 'Current Date/Time is' + datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
 print 'Initial Altitude = {0:0.2f} m'.format(local_altitude)
-print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sealevelpressure)
+print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sealevel_pressure)
 print 'Initial Temp = {0:0.2f} *C'.format(sensor.read_temperature())
 print 'Initial External Temperature = {0:0.2f} C'.format(read_probe_temperature())
 print 'Initial Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
-print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude(sealevelpressure))
+print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude(sealevel_pressure))
 
 
 
@@ -143,7 +143,7 @@ while not quit:
     strAltitude = '{0:0.2f}'.format(sensor.read_altitude(sealevel_pressure))
     strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
 
-    outstring = timestamp + ',' + local_altitude + ',' + sealevel_pressure + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + strSeaLevelPressure + '\n'
+    outstring = timestamp + ',' + local_altitude + ',' + sealevel_pressure + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + '\n'
 
     print outstring
     f.write(outstring)
