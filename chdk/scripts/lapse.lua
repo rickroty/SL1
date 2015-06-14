@@ -290,6 +290,15 @@ set_prop(57,0)
 
 print "Starting - Press SET to exit"
 
+-- log file number by day of month
+
+D=get_time("D")
+print_screen(-1 * D) --negative means append (in case of a restart, we dont want to overwrite)
+
+-- write log header
+print("time, optical_temp, ccd_temp, battery_temp, orientation, voltage, message")
+
+
 start_ticks = get_tick_count()
 
 
