@@ -299,7 +299,7 @@ print_screen(-1 * D) --negative means append (in case of a restart, we dont want
 
 -- write log header
 print("time, optical_temp, ccd_temp, battery_temp, orientation, voltage, message")
-
+print_screen(0)
 
 start_ticks = get_tick_count()
 
