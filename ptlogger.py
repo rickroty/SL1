@@ -93,7 +93,7 @@ def read_probe_temperature():
 
 sensor = BMP085.BMP085()
 local_altitude = 585
-sealevel_pressure = sensor.read_sealevelpressure(local_altitude)
+sealevel_pressure = sensor.read_sealevel_pressure(local_altitude)
 
 # BMP085 modes are one of BMP085_ULTRALOWPOWER, 
 # BMP085_STANDARD, BMP085_HIGHRES, or BMP085_ULTRAHIGHRES.  See the BMP085
