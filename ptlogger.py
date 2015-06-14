@@ -142,8 +142,10 @@ while not quit:
     strPressure = '{0:0.2f}'.format(sensor.read_pressure())
     strAltitude = '{0:0.2f}'.format(sensor.read_altitude(sealevel_pressure))
     strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
+    strLocalAltitude = '{0:0.2f}'.format(local_altitude)
+    strSealevelPressure = '{0:0.2f}'.format(sealevel_pressure)
 
-    outstring = timestamp + ',' + local_altitude + ',' + sealevel_pressure + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + '\n'
+    outstring = timestamp + ',' + strLocalAltitude + ',' + strSealevelPressure + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + '\n'
 
     print outstring
     f.write(outstring)
