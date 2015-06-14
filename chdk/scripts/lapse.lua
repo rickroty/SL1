@@ -96,6 +96,8 @@ function writelog(msg)
  
  -- time, temp1, temp2, temp3, orientation, battery voltage, message
  print('' .. ts .. ',' .. t0 .. ',' .. t1 .. ',' .. t2 .. ',' .. orient .. ',' .. volt .. ',' .. msg)
+ 
+ print_screen(0)
 end
 
 
