@@ -53,7 +53,7 @@ import socket
 
 clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 clientsocket.connect(('localhost', 5000))
-clientsocket.send('killusb')
+#clientsocket.send('killusb')
 clientsocket.close()
 
 # Setup 1-wire BUS for temperature probe
@@ -92,7 +92,8 @@ def read_probe_temperature():
 # on the Pi's revision.
 
 sensor = BMP085.BMP085()
-
+local_altitude = 585
+sealevel_pressure sensor.read_sealevelpressure(local_altitude)
 
 # BMP085 modes are one of BMP085_ULTRALOWPOWER, 
 # BMP085_STANDARD, BMP085_HIGHRES, or BMP085_ULTRAHIGHRES.  See the BMP085
@@ -102,12 +103,12 @@ sensor = BMP085.BMP085()
 
 print 'Current Date/Time is' + datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
+print 'Initial Altitude = {0:0.2f} m'.format(local_altitude)
+print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sealevelpressure)
 print 'Initial Temp = {0:0.2f} *C'.format(sensor.read_temperature())
 print 'Initial External Temperature = {0:0.2f} C'.format(read_probe_temperature())
 print 'Initial Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
-print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude())
-print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
-
+print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude(sealevelpressure))
 
 
 
