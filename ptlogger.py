@@ -49,12 +49,12 @@ while (start==0):
 GPIO.output(POWERLED, GPIO.HIGH)
 GPIO.output(LED, GPIO.LOW)
 
-import socket
+#import socket
 
-clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientsocket.connect(('localhost', 5000))
+#clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#clientsocket.connect(('localhost', 5000))
 #clientsocket.send('killusb')
-clientsocket.close()
+#clientsocket.close()
 
 # Setup 1-wire BUS for temperature probe
 os.system('modprobe w1-gpio')
@@ -145,7 +145,7 @@ while not quit:
     strLocalAltitude = '{0:0.2f}'.format(local_altitude)
     strSealevelPressure = '{0:0.2f}'.format(sealevel_pressure)
 
-    outstring = timestamp + ',' + strLocalAltitude + ',' + strSealevelPressure + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + ',' + '\n'
+    outstring = timestamp + ',' + strLocalAltitude + ',' + strSealevelPressure + ',' + strTemp + ',' + strOutsideTemp + ',' + strPressure + ',' + strAltitude + '\n'
 
     print outstring
     f.write(outstring)
