@@ -26,9 +26,9 @@ while (run):
         if meteron:
              meteron = False
              GPIO.output(VOLTMETER, GPIO.LOW)
-            clientsocket.connect(('localhost', 5000))
-            clientsocket.send('killusb')
-            clientsocket.close()             
+             clientsocket.connect(('localhost', 5000))
+             clientsocket.send('killusb')
+             clientsocket.close()             
              print 'VOLT METER OFF'
              print 'USB OFF'
              sleep(0.5)
