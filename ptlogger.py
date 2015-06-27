@@ -92,7 +92,7 @@ def read_probe_temperature():
 # on the Pi's revision.
 
 sensor = BMP085.BMP085()
-local_altitude = 585
+local_altitude = 482   #Pleasant Valley Airport
 sealevel_pressure = sensor.read_sealevel_pressure(local_altitude)
 
 # BMP085 modes are one of BMP085_ULTRALOWPOWER, 
