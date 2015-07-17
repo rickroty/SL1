@@ -143,10 +143,10 @@ while not quit:
     strAltitude = '{0:0.2f}'.format(sensor.read_altitude(sealevel_pressure))
 
     try:
-       strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
-       break
-     except ValueError:
-         strOutsideTemp = '0'
+        strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
+        break
+    except ValueError:
+            strOutsideTemp = '0'
 
     strLocalAltitude = '{0:0.2f}'.format(local_altitude)
     strSealevelPressure = '{0:0.2f}'.format(sealevel_pressure)
