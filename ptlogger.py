@@ -65,9 +65,12 @@ device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
  
 def read_temp_raw():
-    f = open(device_file, 'r')
-    lines = f.readlines()
-    f.close()
+    if os.path.exists(device_file)
+        f = open(device_file, 'r')
+        lines = f.readlines()
+        f.close()
+    else
+        raise ValueError('Cannot read temperature probe.')
     return lines
  
 def read_probe_temperature():
