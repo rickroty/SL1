@@ -136,7 +136,7 @@ outstring = 'date,temp,outsidetemp,pressure,altitude,sealevelpressure\n'
 f.write(outstring)
 f.close()
 
-strOutsideTemp = 0
+strOutsideTemp = '0'
 quit = False
 while not quit:
     
