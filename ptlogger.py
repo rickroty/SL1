@@ -60,7 +60,7 @@ GPIO.output(LED, GPIO.LOW)
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
  
- external_probe = true
+external_probe = true
 base_dir = '/sys/bus/w1/devices/'
 try:
     device_folder = glob.glob(base_dir + '28*')[0]
