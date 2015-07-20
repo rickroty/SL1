@@ -114,7 +114,8 @@ print 'Current Date/Time is' + datetime.datetime.now().strftime("%Y/%m/%d %H:%M:
 print 'Initial Altitude = {0:0.2f} m'.format(local_altitude)
 print 'Initial Sealevel Pressure = {0:0.2f} Pa'.format(sealevel_pressure)
 print 'Initial Temp = {0:0.2f} *C'.format(sensor.read_temperature())
-print 'Initial External Temperature = {0:0.2f} C'.format(read_probe_temperature())
+if(external_probe):
+    print 'Initial External Temperature = {0:0.2f} C'.format(read_probe_temperature())
 print 'Initial Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
 print 'Initial Altitude = {0:0.2f} m'.format(sensor.read_altitude(sealevel_pressure))
 
