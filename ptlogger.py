@@ -64,7 +64,6 @@ external_probe = true
 base_dir = '/sys/bus/w1/devices/'
 try:
     device_folder = glob.glob(base_dir + '28*')[0]
-    break
 except ValueError:
     print "Error binding to external temperature probe.  Skipping this sensor."
     external_probe = false
