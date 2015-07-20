@@ -60,13 +60,13 @@ GPIO.output(LED, GPIO.LOW)
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
  
-external_probe = true
+external_probe = True
 base_dir = '/sys/bus/w1/devices/'
 try:
     device_folder = glob.glob(base_dir + '28*')[0]
 except ValueError:
     print "Error binding to external temperature probe.  Skipping this sensor."
-    external_probe = false
+    external_probe = False
 device_file = device_folder + '/w1_slave'
  
 def read_temp_raw():
