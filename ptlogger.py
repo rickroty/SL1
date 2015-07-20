@@ -60,8 +60,14 @@ GPIO.output(LED, GPIO.LOW)
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
  
+ external_probe = true
 base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '28*')[0]
+try:
+    device_folder = glob.glob(base_dir + '28*')[0]
+    break
+except ValueError:
+    print "Error binding to external temperature probe.  Skipping this sensor."
+    external_probe = false
 device_file = device_folder + '/w1_slave'
  
 def read_temp_raw():
@@ -130,6 +136,7 @@ outstring = 'date,temp,outsidetemp,pressure,altitude,sealevelpressure\n'
 f.write(outstring)
 f.close()
 
+strOutsideTemp = 0
 quit = False
 while not quit:
     
@@ -145,10 +152,11 @@ while not quit:
     strPressure = '{0:0.2f}'.format(sensor.read_pressure())
     strAltitude = '{0:0.2f}'.format(sensor.read_altitude(sealevel_pressure))
 
-    try:
-        strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
-        break
-    except ValueError:
+    if (external_probe):
+        try:
+            strOutsideTemp = '{0:0.2f}'.format(read_probe_temperature())
+            break
+        except ValueError:
             strOutsideTemp = '0'
 
     strLocalAltitude = '{0:0.2f}'.format(local_altitude)
